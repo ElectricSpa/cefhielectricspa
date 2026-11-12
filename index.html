@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEFHI | Instalaciones Eléctricas y Cámaras de Seguridad</title>
+    <!-- Tailwind CSS para diseño moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0B192C',
+                            dark: '#050B14',
+                            accent: '#1E3E62',
+                            orange: '#FF6500',
+                            electric: '#00D2FC',
+                            card: '#132238'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .glow-orange { box-shadow: 0 0 25px rgba(255, 101, 0, 0.3); }
+        .glow-blue { box-shadow: 0 0 25px rgba(0, 210, 252, 0.2); }
+        body { background-color: #050B14; color: #F1F5F9; font-family: system-ui, -apple-system, sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <header class="bg-brand-dark/90 backdrop-blur-md border-b border-brand-accent/40 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+            <!-- Logo CEFHI -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('inicio')">
+                <div class="bg-white p-1.5 rounded-xl shadow-md flex items-center justify-center w-12 h-12">
+                    <svg viewBox="0 0 500 500" class="w-10 h-10 object-contain">
+                        <!-- Circuito / Logo Vectorial CEFHI -->
+                        <path d="M120 150 L200 150 L250 200 L200 250 L120 250 Z" fill="none" stroke="#0B192C" stroke-width="25"/>
+                        <path d="M150 250 L230 250 L280 300 L230 350 L150 350 Z" fill="none" stroke="#FF6500" stroke-width="25"/>
+                        <circle cx="90" cy="200" r="15" fill="#FF6500"/>
+                        <line x1="105" y1="200" x2="160" y2="200" stroke="#FF6500" stroke-width="15"/>
+                        <polygon points="150,185 180,200 150,215" fill="#FF6500"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-2xl font-black tracking-wider text-white">CEFHI</span>
+                    <span class="block text-[10px] text-brand-electric font-semibold uppercase tracking-widest">Instalaciones Eléctricas & CCTV</span>
+                </div>
+            </div>
+
+            <!-- Menú de Pestañas -->
+            <nav class="flex space-x-1 sm:space-x-2 mt-3 sm:mt-0 overflow-x-auto pb-1 sm:pb-0">
+                <button onclick="switchTab('inicio')" id="btn-inicio" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition bg-brand-accent text-brand-electric border border-brand-electric/40">
+                    <i class="fa-solid fa-house mr-1.5"></i> Inicio
+                </button>
+                <button onclick="switchTab('electricas')" id="btn-electricas" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition text-slate-300 hover:bg-brand-card">
+                    <i class="fa-solid fa-bolt mr-1.5"></i> Eléctricas
+                </button>
+                <button onclick="switchTab('camaras')" id="btn-camaras" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition text-slate-300 hover:bg-brand-card">
+                    <i class="fa-solid fa-video mr-1.5"></i> Cámaras CCTV
+                </button>
+                <button onclick="switchTab('proyectos')" id="btn-proyectos" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition text-slate-300 hover:bg-brand-card">
+                    <i class="fa-solid fa-folder-open mr-1.5"></i> Proyectos
+                </button>
+                <button onclick="switchTab('cotizador')" id="btn-cotizador" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition text-slate-300 hover:bg-brand-card bg-brand-orange/20 text-brand-orange border border-brand-orange/40">
+                    <i class="fa-solid fa-calculator mr-1.5"></i> Cotizador
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL (PESTAÑAS) -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- 1. SECCIÓN INICIO -->
+        <section id="tab-inicio" class="tab-content space-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-brand-accent/50 px-3 py-1.5 rounded-full border border-brand-electric/30 text-brand-electric text-xs font-medium">
+                        <span class="w-2 h-2 rounded-full bg-brand-electric animate-pulse"></span>
+                        <span>Servicios Profesionales Garantizados</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                        Soluciones en <span class="text-brand-electric">Electricidad</span> y <span class="text-brand-orange">Seguridad</span>
+                    </h1>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Especialistas en instalaciones eléctricas domiciliarias y comerciales, tableros de distribución y sistemas de televigilancia (CCTV) con monitoreo remoto. Calidad, orden y seguridad para tu hogar o negocio.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="switchTab('cotizador')" class="bg-brand-orange hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-xl transition shadow-lg glow-orange flex items-center space-x-2">
+                            <span>Cotizar en Línea</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <a href="https://wa.me/56977669553" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3 rounded-xl transition shadow-lg flex items-center space-x-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>WhatsApp Directo</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tarjetas de Estadísticas -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-brand-card p-6 rounded-2xl border border-brand-accent/60 text-center space-y-2">
+                        <div class="text-3xl sm:text-4xl font-black text-brand-electric">+100</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider font-medium">Instalaciones entregadas</div>
+                    </div>
+                    <div class="bg-brand-card p-6 rounded-2xl border border-brand-accent/60 text-center space-y-2">
+                        <div class="text-3xl sm:text-4xl font-black text-brand-orange">100%</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider font-medium">Compromiso y Garantía</div>
+                    </div>
+                    <div class="bg-brand-card p-6 rounded-2xl border border-brand-accent/60 text-center space-y-2 col-span-2">
+                        <div class="text-xl font-bold text-white"><i class="fa-solid fa-shield-halved text-brand-electric mr-2"></i> Seguridad Comprobada</div>
+                        <p class="text-xs text-slate-300">Trabajos ejecutados bajo estrictas normativas técnicas de protección y rendimiento.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen de Servicios -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+                <div onclick="switchTab('electricas')" class="bg-brand-card p-8 rounded-2xl border border-brand-accent/80 hover:border-brand-electric/60 transition cursor-pointer group">
+                    <div class="w-14 h-14 bg-brand-blue rounded-xl flex items-center justify-center text-brand-electric text-2xl mb-4 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Instalaciones Eléctricas</h3>
+                    <p class="text-slate-300 text-sm mb-4">Montaje de tableros TDA, cableado estructurado, enchufes, iluminación LED y normalización de circuitos.</p>
+                    <span class="text-brand-electric text-sm font-semibold flex items-center space-x-1"><span>Ver detalles</span> <i class="fa-solid fa-chevron-right text-xs"></i></span>
+                </div>
+                <div onclick="switchTab('camaras')" class="bg-brand-card p-8 rounded-2xl border border-brand-accent/80 hover:border-brand-orange/60 transition cursor-pointer group">
+                    <div class="w-14 h-14 bg-brand-blue rounded-xl flex items-center justify-center text-brand-orange text-2xl mb-4 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Cámaras de Seguridad (CCTV)</h3>
+                    <p class="text-slate-300 text-sm mb-4">Instalación de cámaras HD/IP, configuración de grabadores DVR/NVR y acceso remoto directo en tu smartphone.</p>
+                    <span class="text-brand-orange text-sm font-semibold flex items-center space-x-1"><span>Ver detalles</span> <i class="fa-solid fa-chevron-right text-xs"></i></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SECCIÓN INSTALACIONES ELÉCTRICAS -->
+        <section id="tab-electricas" class="tab-content hidden space-y-8">
+            <div class="border-b border-brand-accent pb-4">
+                <h2 class="text-3xl font-extrabold text-white flex items-center">
+                    <i class="fa-solid fa-bolt text-brand-electric mr-3"></i> Instalaciones Eléctricas Profesionales
+                </h2>
+                <p class="text-slate-300 text-sm mt-1">Servicios orientados a garantizar el suministro eléctrico seguro, eficiente y ordenado.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-accent space-y-3">
+                    <div class="text-brand-electric text-2xl"><i class="fa-solid fa-box-archive"></i></div>
+                    <h3 class="text-lg font-bold text-white">Tableros Eléctricos TDA</h3>
+                    <p class="text-sm text-slate-300">Armado, cableado y etiquetado de tableros de distribución con protecciones termomagnéticas y diferenciales adecuadas.</p>
+                </div>
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-accent space-y-3">
+                    <div class="text-brand-electric text-2xl"><i class="fa-solid fa-plug"></i></div>
+                    <h3 class="text-lg font-bold text-white">Puntos de Luz y Enchufes</h3>
+                    <p class="text-sm text-slate-300">Instalación embutida o en superficie de centros de luz, interruptores, enchufes y canalizaciones con materiales certificados.</p>
+                </div>
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-accent space-y-3">
+                    <div class="text-brand-electric text-2xl"><i class="fa-solid fa-lightbulb"></i></div>
+                    <h3 class="text-lg font-bold text-white">Iluminación LED</h3>
+                    <p class="text-sm text-slate-300">Proyectos de iluminación interior y exterior, focos decorativos, apliques y optimización de consumo energético.</p>
+                </div>
+            </div>
+
+            <div class="bg-brand-card p-6 rounded-2xl border border-brand-accent flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <h4 class="text-white font-bold text-lg">¿Necesitas revisar o ampliar tu instalación eléctrica?</h4>
+                    <p class="text-slate-300 text-sm">Cotiza de forma rápida o comunícate por WhatsApp para una asesoría directa.</p>
+                </div>
+                <button onclick="switchTab('cotizador')" class="bg-brand-electric text-brand-dark font-bold px-6 py-3 rounded-xl hover:bg-cyan-300 transition whitespace-nowrap">
+                    Ir al Cotizador
+                </button>
+            </div>
+        </section>
+
+        <!-- 3. SECCIÓN CÁMARAS CCTV -->
+        <section id="tab-camaras" class="tab-content hidden space-y-8">
+            <div class="border-b border-brand-accent pb-4">
+                <h2 class="text-3xl font-extrabold text-white flex items-center">
+                    <i class="fa-solid fa-video text-brand-orange mr-3"></i> Sistemas de Cámaras de Seguridad (CCTV)
+                </h2>
+                <p class="text-slate-300 text-sm mt-1">Protege tu hogar o negocio con televigilancia en alta definición y control total desde tu teléfono.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-accent space-y-3">
+                    <div class="text-brand-orange text-2xl"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                    <h3 class="text-lg font-bold text-white">Monitoreo Móvil 24/7</h3>
+                    <p class="text-sm text-slate-300">Configuración completa en tu celular (iOS y Android) para ver tus cámaras en tiempo real desde cualquier lugar.</p>
+                </div>
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-accent space-y-3">
+                    <div class="text-brand-orange text-2xl"><i class="fa-solid fa-moon"></i></div>
+                    <h3 class="text-lg font-bold text-white">Visión Nocturna HD</h3>
+                    <p class="text-sm text-slate-300">Cámaras con infrarrojo avanzado y tecnología de alta nitidez para grabación clara incluso en absoluta oscuridad.</p>
+                </div>
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-accent space-y-3">
+                    <div class="text-brand-orange text-2xl"><i class="fa-solid fa-hard-drive"></i></div>
+                    <h3 class="text-lg font-bold text-white">Grabación y Resguardo</h3>
+                    <p class="text-sm text-slate-300">Instalación de discos duros especializados para videovigilancia continua en equipos DVR o NVR seguros.</p>
+                </div>
+            </div>
+
+            <div class="bg-brand-card p-6 rounded-2xl border border-brand-accent flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <h4 class="text-white font-bold text-lg">Protege tus espacios con tecnología confiable</h4>
+                    <p class="text-slate-300 text-sm">Calcula un presupuesto estimado para tu sistema de cámaras en segundos.</p>
+                </div>
+                <button onclick="switchTab('cotizador')" class="bg-brand-orange text-white font-bold px-6 py-3 rounded-xl hover:bg-orange-600 transition whitespace-nowrap">
+                    Cotizar Cámaras
+                </button>
+            </div>
+        </section>
+
+        <!-- 4. SECCIÓN PROYECTOS -->
+        <section id="tab-proyectos" class="tab-content hidden space-y-8">
+            <div class="border-b border-brand-accent pb-4">
+                <h2 class="text-3xl font-extrabold text-white flex items-center">
+                    <i class="fa-solid fa-folder-open text-brand-electric mr-3"></i> Proyectos Realizados
+                </h2>
+                <p class="text-slate-300 text-sm mt-1">Una muestra del estándar de prolijidad, orden y calidad en nuestras instalaciones.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Proyecto 1 -->
+                <div class="bg-brand-card rounded-2xl border border-brand-accent overflow-hidden flex flex-col">
+                    <div class="h-48 bg-gradient-to-br from-brand-blue to-brand-accent flex items-center justify-center text-brand-electric text-5xl">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow space-y-3">
+                        <span class="text-xs font-semibold uppercase text-brand-electric bg-brand-blue px-2.5 py-1 rounded-md w-max">Instalación Eléctrica</span>
+                        <h3 class="text-lg font-bold text-white">Tablero de Distribución TDA</h3>
+                        <p class="text-sm text-slate-300">Montaje, orden de conductores y conexionado de protecciones en propiedad residencial.</p>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 -->
+                <div class="bg-brand-card rounded-2xl border border-brand-accent overflow-hidden flex flex-col">
+                    <div class="h-48 bg-gradient-to-br from-brand-blue to-brand-accent flex items-center justify-center text-brand-orange text-5xl">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow space-y-3">
+                        <span class="text-xs font-semibold uppercase text-brand-orange bg-brand-blue px-2.5 py-1 rounded-md w-max">Cámaras CCTV</span>
+                        <h3 class="text-lg font-bold text-white">Sistema de Seguridad Perimetral</h3>
+                        <p class="text-sm text-slate-300">Distribución de cámaras exteriores con canalización protegida y visualización en smartphone.</p>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 -->
+                <div class="bg-brand-card rounded-2xl border border-brand-accent overflow-hidden flex flex-col">
+                    <div class="h-48 bg-gradient-to-br from-brand-blue to-brand-accent flex items-center justify-center text-cyan-400 text-5xl">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow space-y-3">
+                        <span class="text-xs font-semibold uppercase text-cyan-400 bg-brand-blue px-2.5 py-1 rounded-md w-max">Iluminación</span>
+                        <h3 class="text-lg font-bold text-white">Canalización e Iluminación LED</h3>
+                        <p class="text-sm text-slate-300">Implementación de circuitos de iluminación eficiente y diseño de centros de luz.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SECCIÓN COTIZADOR -->
+        <section id="tab-cotizador" class="tab-content hidden space-y-8 max-w-3xl mx-auto">
+            <div class="border-b border-brand-accent pb-4 text-center">
+                <h2 class="text-3xl font-extrabold text-white flex items-center justify-center">
+                    <i class="fa-solid fa-calculator text-brand-orange mr-3"></i> Cotizador Rápido CEFHI
+                </h2>
+                <p class="text-slate-300 text-sm mt-1">Calcula un valor referencial instantáneo para tu proyecto.</p>
+            </div>
+
+            <div class="bg-brand-card p-6 sm:p-8 rounded-2xl border border-brand-accent space-y-6">
+                <!-- Selección de Servicio -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-white">Selecciona el tipo de servicio:</label>
+                    <select id="cot-servicio" onchange="calcularPresupuesto()" class="w-full bg-brand-dark border border-brand-accent rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-electric">
+                        <option value="electricas">Instalaciones Eléctricas (Puntos)</option>
+                        <option value="camaras">Cámaras de Seguridad - CCTV (Unidades)</option>
+                    </select>
+                </div>
+
+                <!-- Cantidad -->
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <label id="label-cantidad" class="text-sm font-semibold text-white">Cantidad de puntos:</label>
+                        <span id="valor-cantidad" class="text-brand-electric font-black text-lg bg-brand-blue px-3 py-1 rounded-lg">5</span>
+                    </div>
+                    <input type="range" id="cot-cantidad" min="1" max="30" value="5" oninput="calcularPresupuesto()" class="w-full accent-brand-electric cursor-pointer">
+                    <div class="flex justify-between text-xs text-slate-400 font-medium">
+                        <span>1</span>
+                        <span>15</span>
+                        <span>30</span>
+                    </div>
+                </div>
+
+                <!-- Resumen Estimado -->
+                <div class="bg-brand-blue/60 p-5 rounded-xl border border-brand-accent space-y-2 text-center">
+                    <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Valor Referencial Estimado</span>
+                    <div id="resultado-precio" class="text-3xl sm:text-4xl font-black text-brand-orange">$150.000 CLP</div>
+                    <p class="text-xs text-amber-400/90 italic pt-1">
+                        * Nota: Los valores son aproximados y pueden variar según metraje de cableado, complejidad de la instalación y materiales requeridos.
+                    </p>
+                </div>
+
+                <!-- Formulario de Envío -->
+                <div class="space-y-4 pt-2">
+                    <h3 class="text-white font-bold text-base border-t border-brand-accent pt-4">Envía tu cotización directo a nuestro WhatsApp</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Tu Nombre:</label>
+                            <input type="text" id="cot-nombre" placeholder="Ej. Carlos Pérez" class="w-full bg-brand-dark border border-brand-accent rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-electric">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Teléfono de contacto:</label>
+                            <input type="text" id="cot-telefono" placeholder="Ej. +56912345678" class="w-full bg-brand-dark border border-brand-accent rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-electric">
+                        </div>
+                    </div>
+                    <button onclick="enviarCotizacionWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl transition shadow-lg flex items-center justify-center space-x-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Enviar Cotización por WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-brand-dark border-t border-brand-accent/40 mt-12 py-8">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <!-- Logo y Nombre -->
+            <div class="flex items-center space-x-3">
+                <div class="bg-white p-1.5 rounded-xl shadow-md flex items-center justify-center w-10 h-10">
+                    <svg viewBox="0 0 500 500" class="w-8 h-8 object-contain">
+                        <path d="M120 150 L200 150 L250 200 L200 250 L120 250 Z" fill="none" stroke="#0B192C" stroke-width="25"/>
+                        <path d="M150 250 L230 250 L280 300 L230 350 L150 350 Z" fill="none" stroke="#FF6500" stroke-width="25"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-wider text-white">CEFHI</span>
+                    <span class="block text-[10px] text-brand-electric font-semibold uppercase">Instalaciones Eléctricas & CCTV</span>
+                </div>
+            </div>
+
+            <!-- Contacto Directo -->
+            <div class="space-y-2 text-sm text-slate-300">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-phone text-brand-electric"></i>
+                    <span>+56 9 7766 9553</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-envelope text-brand-orange"></i>
+                    <a href="mailto:cefhielectricspa@gmail.com" class="hover:underline">cefhielectricspa@gmail.com</a>
+                </div>
+            </div>
+
+            <!-- Derechos y Redes -->
+            <div class="text-sm text-slate-400 md:text-right space-y-2">
+                <p>&copy; 2026 CEFHI. Todos los derechos reservados.</p>
+                <div class="flex space-x-4 md:justify-end text-lg">
+                    <a href="https://wa.me/56977669553" target="_blank" class="text-emerald-500 hover:text-emerald-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="mailto:cefhielectricspa@gmail.com" class="text-slate-300 hover:text-white transition"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE NAVEGACIÓN Y COTIZADOR -->
+    <script>
+        function switchTab(tabId) {
+            // Ocultar todas las pestañas
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.add('hidden'));
+
+            // Mostrar la pestaña seleccionada
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            // Actualizar botones de navegación
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(btn => {
+                btn.classList.remove('bg-brand-accent', 'text-brand-electric', 'border', 'border-brand-electric/40', 'bg-brand-orange/20', 'text-brand-orange');
+                btn.classList.add('text-slate-300', 'hover:bg-brand-card');
+            });
+
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if (activeBtn) {
+                if(tabId === 'cotizador') {
+                    activeBtn.classList.add('bg-brand-orange/20', 'text-brand-orange', 'border', 'border-brand-orange/40');
+                } else {
+                    activeBtn.classList.add('bg-brand-accent', 'text-brand-electric', 'border', 'border-brand-electric/40');
+                }
+                activeBtn.classList.remove('text-slate-300', 'hover:bg-brand-card');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function calcularPresupuesto() {
+            const servicio = document.getElementById('cot-servicio').value;
+            const cantidad = parseInt(document.getElementById('cot-cantidad').value);
+            const labelCantidad = document.getElementById('label-cantidad');
+            const spanValor = document.getElementById('valor-cantidad');
+            const resultadoPrecio = document.getElementById('resultado-precio');
+
+            spanValor.innerText = cantidad;
+
+            let total = 0;
+            if (servicio === 'electricas') {
+                labelCantidad.innerText = 'Cantidad de puntos eléctricos:';
+                total = cantidad * 30000; // $30.000 CLP por punto eléctrico
+                resultadoPrecio.innerText = '$' + total.toLocaleString('es-CL') + ' CLP';
+            } else if (servicio === 'camaras') {
+                labelCantidad.innerText = 'Cantidad de cámaras (CCTV):';
+                total = cantidad * 40000; // $40.000 CLP por cámara
+                resultadoPrecio.innerText = '$' + total.toLocaleString('es-CL') + ' CLP';
+            }
+        }
+
+        function enviarCotizacionWhatsApp() {
+            const servicio = document.getElementById('cot-servicio').value;
+            const cantidad = document.getElementById('cot-cantidad').value;
+            const nombre = document.getElementById('cot-nombre').value.trim();
+            const telefono = document.getElementById('cot-telefono').value.trim();
+            const precioEstimado = document.getElementById('resultado-precio').innerText;
+
+            let nombreServicio = servicio === 'electricas' ? 'Instalaciones Eléctricas' : 'Cámaras de Seguridad (CCTV)';
+            let unidadMedida = servicio === 'electricas' ? 'puntos' : 'cámaras';
+
+            let mensaje = `Hola CEFHI, me gustaría solicitar una cotización:\n\n` +
+                          `• *Servicio:* ${nombreServicio}\n` +
+                          `• *Cantidad:* ${cantidad} ${unidadMedida}\n` +
+                          `• *Valor Estimado:* ${precioEstimado} (Aproximado)\n` +
+                          `• *Nombre:* ${nombre || 'No especificado'}\n` +
+                          `• *Teléfono:* ${telefono || 'No especificado'}`;
+
+            let url = `https://wa.me/56977669553?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+
+        // Ejecutar cálculo inicial al cargar
+        calcularPresupuesto();
+    </script>
+</body>
+</html>
