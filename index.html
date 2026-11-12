@@ -39,14 +39,13 @@
         <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
             <!-- Logo CEFHI -->
             <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('inicio')">
-                <div class="bg-white p-1.5 rounded-xl shadow-md flex items-center justify-center w-12 h-12">
-                    <svg viewBox="0 0 500 500" class="w-10 h-10 object-contain">
-                        <!-- Circuito / Logo Vectorial CEFHI -->
-                        <path d="M120 150 L200 150 L250 200 L200 250 L120 250 Z" fill="none" stroke="#0B192C" stroke-width="25"/>
-                        <path d="M150 250 L230 250 L280 300 L230 350 L150 350 Z" fill="none" stroke="#FF6500" stroke-width="25"/>
-                        <circle cx="90" cy="200" r="15" fill="#FF6500"/>
-                        <line x1="105" y1="200" x2="160" y2="200" stroke="#FF6500" stroke-width="15"/>
-                        <polygon points="150,185 180,200 150,215" fill="#FF6500"/>
+                <div class="bg-white p-1 rounded-xl shadow-md flex items-center justify-center w-12 h-12 overflow-hidden">
+                    <svg viewBox="0 0 350 350" class="w-11 h-11 object-contain scale-125">
+                        <path d="M70 110 L140 110 L180 150 L140 190 L70 190 Z" fill="none" stroke="#0B192C" stroke-width="22"/>
+                        <path d="M100 190 L170 190 L210 230 L170 270 L100 270 Z" fill="none" stroke="#FF6500" stroke-width="22"/>
+                        <circle cx="50" cy="150" r="12" fill="#FF6500"/>
+                        <line x1="62" y1="150" x2="115" y2="150" stroke="#FF6500" stroke-width="12"/>
+                        <polygon points="105,138 130,150 105,162" fill="#FF6500"/>
                     </svg>
                 </div>
                 <div>
@@ -337,10 +336,10 @@
         <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             <!-- Logo y Nombre -->
             <div class="flex items-center space-x-3">
-                <div class="bg-white p-1.5 rounded-xl shadow-md flex items-center justify-center w-10 h-10">
-                    <svg viewBox="0 0 500 500" class="w-8 h-8 object-contain">
-                        <path d="M120 150 L200 150 L250 200 L200 250 L120 250 Z" fill="none" stroke="#0B192C" stroke-width="25"/>
-                        <path d="M150 250 L230 250 L280 300 L230 350 L150 350 Z" fill="none" stroke="#FF6500" stroke-width="25"/>
+                <div class="bg-white p-1 rounded-xl shadow-md flex items-center justify-center w-10 h-10 overflow-hidden">
+                    <svg viewBox="0 0 350 350" class="w-9 h-9 object-contain scale-125">
+                        <path d="M70 110 L140 110 L180 150 L140 190 L70 190 Z" fill="none" stroke="#0B192C" stroke-width="22"/>
+                        <path d="M100 190 L170 190 L210 230 L170 270 L100 270 Z" fill="none" stroke="#FF6500" stroke-width="22"/>
                     </svg>
                 </div>
                 <div>
@@ -375,14 +374,11 @@
     <!-- SCRIPT DE NAVEGACIÓN Y COTIZADOR -->
     <script>
         function switchTab(tabId) {
-            // Ocultar todas las pestañas
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.add('hidden'));
 
-            // Mostrar la pestaña seleccionada
             document.getElementById('tab-' + tabId).classList.remove('hidden');
 
-            // Actualizar botones de navegación
             const btns = document.querySelectorAll('.tab-btn');
             btns.forEach(btn => {
                 btn.classList.remove('bg-brand-accent', 'text-brand-electric', 'border', 'border-brand-electric/40', 'bg-brand-orange/20', 'text-brand-orange');
@@ -444,7 +440,6 @@
             window.open(url, '_blank');
         }
 
-        // Ejecutar cálculo inicial al cargar
         calcularPresupuesto();
     </script>
 </body>
